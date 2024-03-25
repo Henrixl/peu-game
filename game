@@ -1,0 +1,86 @@
+Você pode incorporar todo o jogo em um único arquivo HTML, utilizando JavaScript embutido. Aqui está um exemplo simplificado de como isso pode ser feito:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo de Suspense na Floresta</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#game {
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<h1>Jogo de Suspense na Floresta</h1>
+<p>Bem-vindo(a) ao jogo. Faça suas escolhas para ver como a história se desenrola.</p>
+<div id="game"></div>
+<script>
+const gameContainer = document.getElementById('game');
+let playerChoice;
+
+function showChoice(choice) {
+    playerChoice = choice;
+    gameContainer.innerHTML = '';
+    switch (playerChoice) {
+        case 'faca':
+            gameContainer.innerHTML = `
+                <p>Você pegou a faca.</p>
+                <button onclick="showChoice('explorar')">Explorar a Casa</button>
+                <button onclick="showChoice('saida')">Procurar uma Saída</button>
+            `;
+            break;
+        case 'comida':
+            gameContainer.innerHTML = `
+                <p>Você pegou a mochila com comida.</p>
+                <button onclick="showChoice('explorar')">Explorar a Casa</button>
+                <button onclick="showChoice('saida')">Procurar uma Saída</button>
+            `;
+            break;
+        case 'explorar':
+            gameContainer.innerHTML = `
+                <p>Você decidiu explorar a casa.</p>
+                <button onclick="showChoice('mapa')">Seguir o Mapa</button>
+                <button onclick="showChoice('explorar')">Continuar a Exploração</button>
+            `;
+            break;
+        case 'saida':
+            gameContainer.innerHTML = `
+                <p>Você decidiu procurar uma saída.</p>
+                <button onclick="showChoice('mapa')">Seguir o Mapa</button>
+                <button onclick="showChoice('explorar')">Continuar a Exploração</button>
+            `;
+            break;
+        // Adicione mais casos para as outras escolhas e finais do jogo
+        default:
+            gameContainer.innerHTML = `<p>Escolha inválida. Tente novamente.</p>`;
+            break;
+    }
+}
+
+// Inicialização do jogo
+gameContainer.innerHTML = `
+    <p>Você está perdido na floresta. Encontre um objeto útil para ajudá-lo a sobreviver.</p>
+    <button onclick="showChoice('faca')">Pegar a Faca</button>
+    <button onclick="showChoice('comida')">Pegar a Mochila com Comida</button>
+`;
+</script>
+</body>
+</html>
+```
+
