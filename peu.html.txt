@@ -1,38 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jogo de Suspense na Floresta</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-}
-
-p {
-    text-align: center;
-}
-
-#game {
-    margin-top: 20px;
-}
-</style>
-</head>
-<body>
-<h1>Jogo de Suspense na Floresta</h1>
-<p>Bem-vindo(a) ao jogo. Faça suas escolhas para ver como a história se desenrola.</p>
-<div id="game"></div>
-<script>
 const gameContainer = document.getElementById('game');
+const background = document.getElementById('background');
+const windSound = document.getElementById('wind');
+const choiceSound = document.getElementById('choiceSound');
 let playerChoice;
 
 function showChoice(choice) {
     playerChoice = choice;
+    choiceSound.play();
     gameContainer.innerHTML = '';
     switch (playerChoice) {
         case 'faca':
@@ -73,9 +47,8 @@ function showChoice(choice) {
 // Inicialização do jogo
 gameContainer.innerHTML = `
     <p>Você está perdido na floresta. Encontre um objeto útil para ajudá-lo a sobreviver.</p>
-    <button onclick="showChoice('faca')">Pegar a Faca</button>
-    <button onclick="showChoice('comida')">Pegar a Mochila com Comida</button>
+    <div id="choices">
+      <button onclick="showChoice('faca')">Pegar a Faca</button>
+      <button onclick="showChoice('comida')">Pegar a Mochila com Comida</button>
+    </div>
 `;
-</script>
-</body>
-</html>
